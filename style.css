@@ -27,7 +27,7 @@ body {
 header {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, #000000 0%, #e9ecef 100%);
+    background: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
