@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    <canvas id="bg-canvas"></canvas>
+
     <header>
         <h1>Toolbox</h1>
         <p>내가 불편해서 만든 웹페이지들.</p>
@@ -18,8 +20,8 @@
     <main class="container">
         <div class="grid">
             <!-- 다중PNG변환기 -->
-            <a href="다중PNG시트변환기/index.html" class="card">
-                <div class="card-image">🍎</div>
+            <a href="다중PNG시트변환기/index.html" class="card" id="card-png-merge">
+                <div class="card-image">🖼️</div>
                 <div class="card-content">
                     <h2 class="card-title">다중PNG변환기</h2>
                     <p class="card-description">png 여러개를 한 png로 합치기.</p>
@@ -27,8 +29,8 @@
             </a>
 
             <!-- 애니메이션시트편집기 -->
-            <a href="애니메이션시트편집기/index.html" class="card">
-                <div class="card-image">🍎</div>
+            <a href="애니메이션시트편집기/index.html" class="card" id="card-anim-sheet">
+                <div class="card-image">🎬</div>
                 <div class="card-content">
                     <h2 class="card-title">애니메이션시트편집기</h2>
                     <p class="card-description">gif를 애니메이션 시트png로 변환하기.</p>
@@ -36,8 +38,8 @@
             </a>
 
             <!-- PNG커터 -->
-            <a href="PNG커터/index.html" class="card">
-                <div class="card-image">🍎</div>
+            <a href="PNG커터/index.html" class="card" id="card-png-cutter">
+                <div class="card-image">✂️</div>
                 <div class="card-content">
                     <h2 class="card-title">PNG커터</h2>
                     <p class="card-description">PNG를 일정 크기로 자르기.</p>
@@ -45,8 +47,8 @@
             </a>
 
             <!-- Placeholder for future projects -->
-            <div class="card" style="opacity: 0.5; cursor: default; pointer-events: none;">
-                <div class="card-image">❓</div>
+            <div class="card card--placeholder" id="card-coming-soon">
+                <div class="card-image">✦</div>
                 <div class="card-content">
                     <h2 class="card-title">Coming Soon</h2>
                     <p class="card-description">제작자가 불편한 점이 생기면 만들어질 예정.</p>
@@ -56,7 +58,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Neal.fun Clone Project. All rights reserved.</p>
+        <p>&copy; 2026 Toolbox. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
