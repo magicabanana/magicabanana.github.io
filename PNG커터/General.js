@@ -1,6 +1,7 @@
 // general.js
 // Handles file upload (Drag & Drop + File Input), UI state toggling, and displaying results
 
+
 const General = (() => {
     // DOM Elements
     const uploadZone = document.getElementById('uploadZone');
