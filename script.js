@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
     // ─── Particle Background ───────────────────────────────────────
     const canvas = document.getElementById('bg-canvas');
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.opacity = Math.random() * 0.5 + 0.1;
             this.pulse = Math.random() * Math.PI * 2;
             this.pulseSpeed = Math.random() * 0.02 + 0.005;
-            // Subtle color variation: purple to cyan
             const t = Math.random();
             this.r = Math.round(124 * (1 - t) + 6 * t);
             this.g = Math.round(58 * (1 - t) + 182 * t);
@@ -97,39 +96,76 @@ document.addEventListener('DOMContentLoaded', () => {
         initParticles();
     });
 
-    // ─── Card Mouse-Tracking Glow ──────────────────────────────────
-    const cards = document.querySelectorAll('.card');
+    // ─── Tool Loading & Rendering ──────────────────────────────────
+    const toolsGrid = document.getElementById('tools-grid');
+    let currentLang = 'ko';
 
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            card.style.setProperty('--mouse-x', x + '%');
-            card.style.setProperty('--mouse-y', y + '%');
+    function loadTools() {
+        if (typeof TOOLBOX_CONFIG !== 'undefined' && TOOLBOX_CONFIG.tools) {
+            renderTools(TOOLBOX_CONFIG.tools);
+        } else {
+            console.error('TOOLBOX_CONFIG not found');
+            toolsGrid.innerHTML = `<p class="error">Configuration load failed.</p>`;
+        }
+    }
+
+    function renderTools(tools) {
+        toolsGrid.innerHTML = '';
+        tools.forEach((tool, index) => {
+            const card = document.createElement('a');
+            card.href = tool.path;
+            card.className = 'card';
+            card.id = `card-${tool.id}`;
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            card.innerHTML = `
+                <div class="card-image">${tool.icon || '🛠️'}</div>
+                <div class="card-content">
+                    <h2 class="card-title" data-ko="${tool.title}" data-en="${tool.title_en}">${currentLang === 'ko' ? tool.title : tool.title_en}</h2>
+                    <p class="card-description" data-ko="${tool.description}" data-en="${tool.description_en}">${currentLang === 'ko' ? tool.description : tool.description_en}</p>
+                </div>
+            `;
+
+            // Mouse-tracking glow
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', x + '%');
+                card.style.setProperty('--mouse-y', y + '%');
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.setProperty('--mouse-x', '50%');
+                card.style.setProperty('--mouse-y', '50%');
+            });
+
+            toolsGrid.appendChild(card);
+
+            // Staggered Entrance
+            setTimeout(() => {
+                card.style.transition = `opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 80 + (index * 100));
         });
 
-        card.addEventListener('mouseleave', () => {
-            card.style.setProperty('--mouse-x', '50%');
-            card.style.setProperty('--mouse-y', '50%');
-        });
-    });
-
-    // ─── Staggered Entrance Animation ──────────────────────────────
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.12}s, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.12}s`;
-
-        setTimeout(() => {
-            card.style.opacity = '';
-            card.style.transform = '';
-        }, 80);
-    });
+        // Add "Coming Soon" placeholder
+        const placeholder = document.createElement('div');
+        placeholder.className = 'card card--placeholder';
+        placeholder.innerHTML = `
+            <div class="card-image">✦</div>
+            <div class="card-content">
+                <h2 class="card-title" data-ko="Coming Soon" data-en="Coming Soon">Coming Soon</h2>
+                <p class="card-description" data-ko="제작자가 불편한 점이 생기면 만들어질 예정." data-en="To be made when the creator needs it.">제작자가 불편한 점이 생기면 만들어질 예정.</p>
+            </div>
+        `;
+        toolsGrid.appendChild(placeholder);
+    }
 
     // ─── Language Toggle ───────────────────────────────────────────
     const langBtn = document.getElementById('lang-toggle');
-    let currentLang = 'ko';
 
     if (langBtn) {
         langBtn.addEventListener('click', () => {
@@ -145,4 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Initial load
+    loadTools();
 });

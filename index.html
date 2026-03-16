@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toolbox</title>
     <meta name="description" content="내가 불편해서 만든 웹페이지들.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9798417547330463"
+     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,68 +20,21 @@
     </nav>
 
     <header>
-        <h1 data-ko="이미지 편집 도구를 모아둔 웹 에디터" data-en="Web Editor Collection for Image Tools">이미지 편집 도구를 모아둔 웹 에디터</h1>
+        <h1 data-ko="제한 없는, 포토샵에 없는 기능들." data-en="Web Editor Collection for Image Tools">제한 없는, 포토샵에 없는 기능들.</h1>
         <p data-ko="내가 불편해서 만든 웹페이지들." data-en="Web pages I made because I was uncomfortable.">내가 불편해서 만든 웹페이지들.</p>
     </header>
 
     <main class="container">
-        <div class="grid">
-            <!-- 다중PNG변환기 -->
-            <a href="다중PNG시트변환기/index.html" class="card" id="card-png-merge">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2 class="card-title" data-ko="PNG 병합하기" data-en="Merge PNGs">PNG 병합하기</h2>
-                    <p class="card-description" data-ko="png 여러개를 한 png로 합치기."
-                        data-en="Combine multiple PNGs into one.">png 여러개를 한 png로 합치기.</p>
-                </div>
-            </a>
-
-            <!-- 애니메이션시트편집기 -->
-            <a href="애니메이션시트편집기/index.html" class="card" id="card-anim-sheet">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2 class="card-title" data-ko="스프라이트 시트 편집기" data-en="Sprite Sheet Editor">스프라이트 시트 편집기</h2>
-                    <p class="card-description" data-ko="gif를 애니메이션 시트png로 변환하기."
-                        data-en="Convert GIF to an animation sheet PNG.">gif를 애니메이션 시트png로 변환하기.</p>
-                </div>
-            </a>
-
-            <!-- PNG커터 -->
-            <a href="PNG커터/index.html" class="card" id="card-png-cutter">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2 class="card-title" data-ko="PNG 자르기" data-en="Cut PNG">PNG 자르기</h2>
-                    <p class="card-description" data-ko="PNG를 일정 크기로 자르기." data-en="Cut a PNG to a specific size.">PNG를
-                        일정 크기로 자르기.</p>
-                </div>
-            </a>
-
-            <!-- 확장자변환기 -->
-            <a href="확장자변환기/index.html" class="card" id="card-png-cutter">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2 class="card-title" data-ko="확장자 변환기" data-en="Extension Converter">확장자 변환기</h2>
-                    <p class="card-description" data-ko="이미지 확장자를 변환하기." data-en="Convert image extensions.">이미지 확장자를
-                        변환하기.</p>
-                </div>
-            </a>
-
-            <!-- Placeholder for future projects -->
-            <div class="card card--placeholder" id="card-coming-soon">
-                <div class="card-image">✦</div>
-                <div class="card-content">
-                    <h2 class="card-title" data-ko="Coming Soon" data-en="Coming Soon">Coming Soon</h2>
-                    <p class="card-description" data-ko="제작자가 불편한 점이 생기면 만들어질 예정."
-                        data-en="To be made when the creator needs it.">제작자가 불편한 점이 생기면 만들어질 예정.</p>
-                </div>
+        <div class="grid" id="tools-grid">
+            <!-- Tools will be dynamically injected here -->
+            <div class="loading-state">
+                <p>Loading tools...</p>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Toolbox. All rights reserved.</p>
-    </footer>
-
+    <script src="shared/js/layout.js" defer></script>
+    <script src="config/tools.js"></script>
     <script src="script.js"></script>
 </body>
 

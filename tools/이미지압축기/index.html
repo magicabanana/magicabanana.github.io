@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor - Toolbox</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9798417547330463"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../shared/css/theme.css">
+    <link rel="stylesheet" href="../../shared/css/components.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../../shared/js/layout.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>이미지 용량 줄이기</h1>
+            <p class="subtitle">이미지의 해상도나 품질을 조절하여 파일 용량을 최적화하세요.</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div class="drop-zone" id="drop-zone">
+                    <i class="fas fa-file-image"></i>
+                    <p>이미지를 드래그하거나 클릭하여 업로드</p>
+                    <input type="file" id="file-input" accept="image/*">
+                </div>
+                <div id="file-info" class="file-info" style="display: none;">
+                    <span id="original-name">파일명.png</span>
+                    <span id="original-size">0 KB</span>
+                </div>
+            </section>
+
+            <section class="controls-section">
+                <div class="control-group">
+                    <label for="quality-range">압축 품질: <span id="quality-value">80</span>%</label>
+                    <input type="range" id="quality-range" min="1" max="100" value="80">
+                </div>
+
+                <div class="control-group">
+                    <label for="scale-range">크기 조절: <span id="scale-value">100</span>%</label>
+                    <input type="range" id="scale-range" min="10" max="100" value="100">
+                </div>
+
+                <div class="control-group">
+                    <label for="format-select">출력 포맷</label>
+                    <select id="format-select">
+                        <option value="image/jpeg">JPEG (추천)</option>
+                        <option value="image/webp">WebP</option>
+                        <option value="image/png">PNG (품질 저하 없음)</option>
+                    </select>
+                </div>
+
+                <button class="btn" id="compress-btn" disabled>
+                    <i class="fas fa-compress-arrows-alt"></i> 압축하기
+                </button>
+            </section>
+
+            <section id="preview-section" class="preview-container" style="display: none;">
+                <div class="comparison">
+                    <div class="preview-box">
+                        <h3>결과 미리보기</h3>
+                        <div class="canvas-wrapper">
+                            <canvas id="output-canvas"></canvas>
+                        </div>
+                        <div class="result-info">
+                            <span id="new-size">줄어든 용량: 0 KB</span>
+                            <span id="reduction-percent" class="reduction">(-0%)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-bar">
+                    <button class="btn btn-secondary" id="download-btn">
+                        <i class="fas fa-download"></i> 이미지 다운로드
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

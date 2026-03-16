@@ -26,4 +26,12 @@
     <priority>0.8</priority>
   </url>
 
+    <!-- 확장자변환기 -->
+  <url>
+    <loc>https://내도메인.com/확장자변환기/</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

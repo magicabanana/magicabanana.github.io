@@ -1,23 +1,6 @@
+@import url('shared/css/theme.css');
+@import url('shared/css/components.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-:root {
-    --bg-primary: #0a0a0f;
-    --bg-secondary: #12121a;
-    --bg-card: rgba(255, 255, 255, 0.03);
-    --bg-card-hover: rgba(255, 255, 255, 0.06);
-    --border-card: rgba(255, 255, 255, 0.06);
-    --border-card-hover: rgba(255, 255, 255, 0.12);
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --accent-start: #7c3aed;
-    --accent-end: #06b6d4;
-    --glow-purple: rgba(124, 58, 237, 0.15);
-    --glow-cyan: rgba(6, 182, 212, 0.15);
-    --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-    --hover-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 
 * {
     margin: 0;

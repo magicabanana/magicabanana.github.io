@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator - Toolbox</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9798417547330463"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../shared/css/theme.css">
+    <link rel="stylesheet" href="../../shared/css/components.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../../shared/js/layout.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>밈 생성기</h1>
+            <p class="subtitle">이미지에 텍스트를 넣어 나만의 짤(Meme)을 만드세요.</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div class="drop-zone" id="drop-zone">
+                    <i class="fas fa-laugh-squint"></i>
+                    <p>이미지를 업로드하세요</p>
+                    <input type="file" id="file-input" accept="image/*">
+                </div>
+            </section>
+
+            <section class="controls-section">
+                <div class="control-group">
+                    <label for="top-text">상단 텍스트</label>
+                    <input type="text" id="top-text" placeholder="TOP TEXT...">
+                </div>
+
+                <div class="control-group">
+                    <label for="bottom-text">하단 텍스트</label>
+                    <input type="text" id="bottom-text" placeholder="BOTTOM TEXT...">
+                </div>
+
+                <div class="control-group">
+                    <label for="font-size">글자 크기: <span id="font-size-val">40</span>px</label>
+                    <input type="range" id="font-size" min="10" max="100" value="40">
+                </div>
+
+                <div class="control-group">
+                    <label for="text-color">글자 색상</label>
+                    <input type="color" id="text-color" value="#ffffff">
+                </div>
+
+                <button class="btn" id="generate-btn" disabled>
+                    <i class="fas fa-magic"></i> 생성하기
+                </button>
+            </section>
+
+            <section id="preview-section" class="preview-container" style="display: none;">
+                <div class="canvas-wrapper">
+                    <canvas id="output-canvas"></canvas>
+                </div>
+                <div class="download-bar">
+                    <button class="btn btn-secondary" id="download-btn">
+                        <i class="fas fa-download"></i> 다운로드
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermark Maker - Toolbox</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9798417547330463"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../shared/css/theme.css">
+    <link rel="stylesheet" href="../../shared/css/components.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../../shared/js/layout.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>워터마크 넣기</h1>
+            <p class="subtitle">이미지에 텍스트나 이미지를 겹쳐 나만의 워터마크를 만드세요.</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div class="drop-zone" id="drop-zone">
+                    <i class="fas fa-image"></i>
+                    <p>원본 이미지를 업로드하세요</p>
+                    <input type="file" id="main-file-input" accept="image/*">
+                </div>
+                <div id="main-file-info" class="file-info" style="display: none;">
+                    <span id="main-file-name">파일명.png</span>
+                </div>
+            </section>
+
+            <section class="controls-section">
+                <div class="tab-container">
+                    <button class="tab-btn active" data-tab="text">텍스트</button>
+                    <button class="tab-btn" data-tab="image">이미지 워터마크</button>
+                </div>
+
+                <div id="text-tab" class="tab-content active">
+                    <div class="control-group">
+                        <label for="wm-text">문구</label>
+                        <input type="text" id="wm-text" placeholder="Watermark...">
+                    </div>
+                    <div class="control-group">
+                        <label for="wm-color">색상</label>
+                        <input type="color" id="wm-color" value="#ffffff">
+                    </div>
+                    <div class="control-group">
+                        <label for="wm-font-size">크기</label>
+                        <input type="number" id="wm-font-size" value="48" min="1">
+                    </div>
+                </div>
+
+                <div id="image-tab" class="tab-content">
+                    <div class="control-group">
+                        <label for="wm-file-input">워터마크 이미지</label>
+                        <input type="file" id="wm-file-input" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>위치</label>
+                    <div class="position-grid">
+                        <button class="pos-btn" data-pos="tl">↖</button>
+                        <button class="pos-btn" data-pos="tc">↑</button>
+                        <button class="pos-btn" data-pos="tr">↗</button>
+                        <button class="pos-btn" data-pos="ml">←</button>
+                        <button class="pos-btn active" data-pos="mc">中間</button>
+                        <button class="pos-btn" data-pos="mr">→</button>
+                        <button class="pos-btn" data-pos="bl">↙</button>
+                        <button class="pos-btn" data-pos="bc">↓</button>
+                        <button class="pos-btn" data-pos="br">↘</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="wm-opacity">투명도: <span id="opacity-val">50</span>%</label>
+                    <input type="range" id="wm-opacity" min="0" max="100" value="50">
+                </div>
+
+                <button class="btn" id="apply-btn" disabled>
+                    <i class="fas fa-magic"></i> 적용하기
+                </button>
+            </section>
+
+            <section id="preview-section" class="preview-container" style="display: none;">
+                <div class="canvas-wrapper">
+                    <canvas id="output-canvas"></canvas>
+                </div>
+                <div class="download-bar">
+                    <button class="btn btn-secondary" id="download-btn">
+                        <i class="fas fa-download"></i> 다운로드
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
