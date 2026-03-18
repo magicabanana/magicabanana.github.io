@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스프라이트 시트 미리보기 | Sprite Sheet Previewer</title>
+    <meta name="description" content="스프라이트 시트 PNG/JPG 이미지를 업로드하고 프레임 크기를 입력해 애니메이션을 실시간으로 미리보세요.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9798417547330463"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../shared/js/layout.js" defer></script>
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>Sprite Sheet <span class="accent">Previewer</span></h1>
+            <p>스프라이트 시트를 업로드하고 애니메이션을 실시간으로 확인하세요.</p>
+        </header>
+
+        <!-- 업로드 영역 -->
+        <section class="upload-section">
+            <div id="drop-zone" class="drop-zone">
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" hidden>
+                <div class="drop-content">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <p class="main-text">PNG 또는 JPG 파일을 여기에 드래그하거나 클릭하세요</p>
+                    <p class="sub-text">스프라이트 시트 이미지를 업로드해 주세요.</p>
+                </div>
+            </div>
+
+            <div id="file-info" class="file-info hidden">
+                <div class="info-card">
+                    <span class="label">이미지 크기</span>
+                    <span id="info-dim" class="value">0 x 0</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">자동 계산 프레임</span>
+                    <span id="info-frames" class="value">0</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">파일명</span>
+                    <span id="info-name" class="value filename">-</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 메인 영역: 애니메이션 미리보기 + 컨트롤 -->
+        <section id="preview-section" class="preview-section hidden">
+            <div class="preview-layout">
+
+                <!-- 왼쪽: 애니메이션 미리보기 -->
+                <div class="anim-panel">
+                    <div class="panel-header">
+                        <h2>애니메이션 미리보기</h2>
+                        <span id="frame-counter" class="frame-counter">0 / 0</span>
+                    </div>
+                    <div class="anim-canvas-wrapper checkerboard">
+                        <canvas id="anim-canvas"></canvas>
+                    </div>
+                    <div class="playback-controls">
+                        <button id="prev-frame-btn" class="icon-btn" title="이전 프레임">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <button id="play-pause-btn" class="play-btn" title="재생/정지">
+                            <svg id="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                <polygon points="5 3 19 12 5 21 5 3"/>
+                            </svg>
+                            <svg id="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="hidden">
+                                <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+                            </svg>
+                        </button>
+                        <button id="next-frame-btn" class="icon-btn" title="다음 프레임">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 오른쪽: 설정 입력란 -->
+                <div class="controls-panel">
+                    <h2>설정</h2>
+                    <div class="control-group">
+                        <label for="frame-w">프레임 가로 (px)</label>
+                        <input type="number" id="frame-w" value="64" min="1">
+                    </div>
+                    <div class="control-group">
+                        <label for="frame-h">프레임 세로 (px)</label>
+                        <input type="number" id="frame-h" value="64" min="1">
+                    </div>
+                    <div class="control-group">
+                        <label for="frame-count">총 프레임 수</label>
+                        <input type="number" id="frame-count" value="1" min="1">
+                    </div>
+                    <div class="control-group">
+                        <label for="fps-input">FPS (초당 프레임)</label>
+                        <input type="number" id="fps-input" value="12" min="1" max="120">
+                    </div>
+                    <button id="apply-btn" class="primary-btn">적용</button>
+                    <div id="calc-hint" class="calc-hint"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 전체 스프라이트 시트 보기 -->
+        <section id="sheet-section" class="sheet-section hidden">
+            <div class="sheet-header">
+                <h2>스프라이트 시트 전체 보기</h2>
+                <span class="sheet-hint">현재 재생 중인 프레임이 하이라이트됩니다.</span>
+            </div>
+            <div class="sheet-canvas-wrapper">
+                <canvas id="sheet-canvas"></canvas>
+                <canvas id="highlight-canvas"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

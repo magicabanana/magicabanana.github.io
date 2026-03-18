@@ -21,6 +21,16 @@ const TOOLBOX_CONFIG = {
       "category": "Animation"
     },
     {
+      "id": "sprite-previewer",
+      "title": "스프라이트 시트 미리보기",
+      "title_en": "Sprite Sheet Previewer",
+      "description": "스프라이트 시트를 애니메이션으로 미리보기.",
+      "description_en": "Preview sprite sheet as animation.",
+      "path": "tools/스프라이트시트프리뷰어/index.html",
+      "icon": "▶️",
+      "category": "Animation"
+    },
+    {
       "id": "png-cutter",
       "title": "PNG 자르기",
       "title_en": "Cut PNG",
