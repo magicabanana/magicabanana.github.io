@@ -41,23 +41,26 @@ downloadBtn.addEventListener('click', () => {
     link.click();
 });
 
-function handleFiles(files) {
+async function handleFiles(files) {
     const validFiles = Array.from(files).filter(file => file.type === 'image/png');
 
-    validFiles.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-                const id = Date.now() + Math.random();
-                uploadedFiles.push({ id, img, name: file.name });
-                renderFileList();
-                updateMergeButton();
+    for (const file of validFiles) {
+        await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const id = Date.now() + Math.random();
+                    uploadedFiles.push({ id, img, name: file.name });
+                    renderFileList();
+                    updateMergeButton();
+                    resolve();
+                };
+                img.src = e.target.result;
             };
-            img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    });
+            reader.readAsDataURL(file);
+        });
+    }
 }
 
 function renderFileList() {
