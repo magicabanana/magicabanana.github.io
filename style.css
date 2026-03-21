@@ -137,7 +137,7 @@ header p {
 /* Cards */
 .card {
     background: var(--bg-card);
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
