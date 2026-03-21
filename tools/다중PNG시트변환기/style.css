@@ -21,16 +21,13 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
     background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
 }
 
 .container {
     width: 100%;
     max-width: 1000px;
+    margin: 2rem auto;
     background: var(--card-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border);

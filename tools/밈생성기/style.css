@@ -12,16 +12,13 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
     background: radial-gradient(circle at top right, #451a03, #0f172a);
 }
 
 .container {
     width: 100%;
     max-width: 900px;
+    margin: 2rem auto;
     background: var(--card-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border);
